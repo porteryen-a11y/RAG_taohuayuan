@@ -10,7 +10,7 @@
 ## 專案結構
 
 - [`embed_and_upload.py`](embed_and_upload.py)
-  - 從 `.roo/taohuayuan.txt` 讀取《桃花源記》全文
+  - 從 `TextFile/taohuayuan.txt` 讀取《桃花源記》全文
   - 將文本依段落切分
   - 呼叫 OpenAI Embeddings API 產生向量
   - 透過 Supabase PostgREST API 將內容與向量寫入 `taohuayuan_vectors` 資料表
@@ -154,7 +154,7 @@ flowchart TD
 
 ### 步驟一：準備文本與向量資料
 
-1. 確認 `.roo/taohuayuan.txt` 已存在，內容為《桃花源記》原文（或你希望索引的文本）。
+1. 確認 `TextFile/taohuayuan.txt` 已存在，內容為《桃花源記》原文（或你希望索引的文本）。
 2. 執行以下指令：
 
 ```bash
@@ -163,7 +163,7 @@ python embed_and_upload.py
 
 此程式會：
 
-- 讀取 `.roo/taohuayuan.txt`
+- 讀取 `TextFile/taohuayuan.txt`
 - 依雙換行分段
 - 呼叫 OpenAI Embeddings API 生成向量
 - 呼叫 Supabase PostgREST API 將資料插入 `taohuayuan_vectors` 表
@@ -208,7 +208,7 @@ python interactive_rag.py
 ## 錯誤處理與注意事項
 
 - 若缺少必要環境變數，兩個腳本都會在啟動時直接提示錯誤並結束。
-- 若 `.roo/taohuayuan.txt` 不存在，[`embed_and_upload.py`](embed_and_upload.py) 會顯示錯誤訊息。
+- 若 `TextFile/taohuayuan.txt` 不存在，[`embed_and_upload.py`](embed_and_upload.py) 會顯示錯誤訊息。
 - 若 Supabase RPC `match_taohuayuan` 未正確建立或權限不足，[`interactive_rag.py`](interactive_rag.py) 會在查詢時印出錯誤細節。
 - 若使用 anon key，請務必配置正確的 RLS 規則（或在開發階段暫時關閉），以允許：
   - `taohuayuan_vectors` 插入 / 查詢
