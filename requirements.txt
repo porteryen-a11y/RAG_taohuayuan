@@ -1,0 +1,7 @@
+psycopg2-binary==2.9.11
+python-dotenv==1.2.1
+requests
+openai
+supabase
+tiktoken
+pydantic
